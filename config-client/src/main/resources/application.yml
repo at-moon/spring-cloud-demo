@@ -3,4 +3,10 @@ server:
 
 spring:
   application:
-    name: config
+    name: config-client
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
