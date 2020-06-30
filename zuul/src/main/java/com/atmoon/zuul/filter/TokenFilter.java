@@ -6,12 +6,14 @@ import com.netflix.zuul.exception.ZuulException;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author : zy
  */
+@Component
 public class TokenFilter extends ZuulFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(TokenFilter.class);
