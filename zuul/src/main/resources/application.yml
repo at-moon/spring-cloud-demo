@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: gateway-service-zuul
+  zipkin:
+    base-url: http://192.168.197.128:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
 
 #zuul:
 #  routes:
