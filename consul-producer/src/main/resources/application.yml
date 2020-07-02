@@ -1,0 +1,12 @@
+server:
+  port: 8502
+
+spring:
+  application:
+    name: consul-producer
+  cloud:
+    consul:
+      host: 192.168.197.128
+      port: 8500
+#      discovery:
+#        serviceName: service-producer
