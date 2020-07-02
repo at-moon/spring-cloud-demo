@@ -1,5 +1,6 @@
 package com.atmoon.consulconsumer.controller;
 
+import com.atmoon.consulconsumer.service.feign.IHelloService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.client.ServiceInstance;
@@ -23,6 +24,8 @@ public class ServiceController {
     private LoadBalancerClient balancerClient;
     @Resource
     private DiscoveryClient discoveryClient;
+    @Resource
+    private IHelloService helloService;
 
     /**
      * 获取所有服务
@@ -51,5 +54,9 @@ public class ServiceController {
         return callServiceResult;
     }
 
+    @RequestMapping("/call1")
+    public String call1() {
+        return helloService.hello();
+    }
 
 }
