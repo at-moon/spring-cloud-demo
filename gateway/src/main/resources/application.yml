@@ -14,15 +14,24 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: hystrix_route
-        uri: lb://DEMO
+      - id: retry_test
+        uri: lb://demo
         predicates:
-        - Path=/girl/list
+        - Path=/girl/hello
         filters:
-        - name: Hystrix
+        - name: Retry
           args:
-            name: fallbackcmd
-            fallbackUri: forward:/error
+            retries: 2
+            statuses: INTERNAL_SERVER_ERROR
+#      - id: hystrix_route
+#        uri: lb://DEMO
+#        predicates:
+#        - Path=/girl/list
+#        filters:
+#        - name: Hystrix
+#          args:
+#            name: fallbackcmd
+#            fallbackUri: forward:/error
 #      - id: requestratelimiter_route
 #        uri: lb://demo
 #        filters:
