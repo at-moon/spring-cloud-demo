@@ -14,17 +14,25 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: requestratelimiter_route
-        uri: lb://demo
-        filters:
-        - name: RequestRateLimiter
-          args:
-            redis-rate-limiter.replenishRate: 1
-            redis-rate-limiter.burstCapacity: 1
-            key-resolver: "#{@userKeyResolver}"
+      - id: hystrix_route
+        uri: lb://DEMO
         predicates:
-          - Method=GET
-
+        - Path=/girl/list
+        filters:
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/error
+#      - id: requestratelimiter_route
+#        uri: lb://demo
+#        filters:
+#        - name: RequestRateLimiter
+#          args:
+#            redis-rate-limiter.replenishRate: 1
+#            redis-rate-limiter.burstCapacity: 1
+#            key-resolver: "#{@userKeyResolver}"
+#        predicates:
+#          - Method=GET
 #      - id: nameRoot
 #        uri: lb://demo
 #        predicates:
